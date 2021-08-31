@@ -9,7 +9,7 @@ interface RepositoryProps {
     org: string
     repo: string
     languages?: {
-        lang: string
+        name: string
         color: string
     }[]
 }
@@ -20,8 +20,8 @@ const Repository: FunctionComponent<RepositoryProps> = props => {
         return props.languages?.flatMap(lang => {
             const textColor = getTextColor(lang.color)
             return (
-                <span key={lang.lang} className={"px-2 py-1 rounded-md " + textColor} style={{ backgroundColor: lang.color }}>
-                    {lang.lang}
+                <span key={lang.name} className={"px-2 py-1 rounded-md " + textColor} style={{ backgroundColor: lang.color }}>
+                    {lang.name}
                 </span>
             )
         }) ?? []

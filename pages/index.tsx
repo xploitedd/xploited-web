@@ -6,8 +6,25 @@ import { CodeIcon, DocumentTextIcon, PresentationChartLineIcon } from '@heroicon
 import AnchorButton from '../components/buttons/AnchorButton'
 import Icon from '../components/icons/Icon'
 import Repository from '../components/repository/Repository'
+import apolloClient from '../src/apollo-client'
+import { GetPinnedRepositoriesDocument, GetPinnedRepositoriesQuery, GetPinnedRepositoriesQueryVariables } from '../src/generated-types'
+import { useMemo } from 'react'
 
-const Home: NextPage = () => {
+interface HomeProps {
+    repoProps: PinnedRepository[]
+}
+
+const Home: NextPage<HomeProps> = props => {
+    const repoList = useMemo(() => {
+        return props.repoProps.map(repo => {
+            return (
+                <Repository key={repo.url} org={repo.owner.name} repo={repo.name} languages={repo.languages}>
+                    {repo.description}
+                </Repository>
+            )
+        })
+    }, [props.repoProps])
+
     return (
         <>
             <Head>
@@ -50,15 +67,7 @@ const Home: NextPage = () => {
                             </div>
                             <div className="flex-initial">
                                 <div className="flex flex-col xl:flex-row space-y-5 xl:space-y-0 xl:space-x-10 text-gray-100">
-                                    <Repository org="i-on-project" repo="core" languages={[{ color: '#A97BFF', lang: 'Kotlin' }, { color: '#336790', lang: 'PLpgSQL' }]}>
-                                        Core is the i-on System repository of academic information.
-                                    </Repository>
-                                    <Repository org="xploitedd" repo="xploited-web" languages={[{ color: '#f1e05a', lang: 'JavaScript' }, { color: '#2b7489', lang: 'TypeScript' }]}>
-                                        My website
-                                    </Repository>
-                                    <Repository org="xploitedd" repo="DrawAndGuess" url="" languages={[{ color: '#A97BFF', lang: 'Kotlin' }]}>
-                                        Public repository of the Mobile Device Programming 2021 winter assignment
-                                    </Repository>
+                                    {repoList}
                                 </div>
                             </div>
                         </div>
@@ -67,6 +76,56 @@ const Home: NextPage = () => {
             </div>
         </>
     )
+}
+
+interface PinnedRepository {
+    name: string
+    url: string
+    description?: string
+    owner: {
+        name: string
+        url: string
+    }
+    languages: {
+        name: string
+        color: string
+    }[]
+}
+
+export async function getServerSideProps() {
+    const { data } = await apolloClient.query<GetPinnedRepositoriesQuery, GetPinnedRepositoriesQueryVariables>({
+        query: GetPinnedRepositoriesDocument,
+        variables: {
+            userLogin: "xploitedd"
+        }
+    })
+
+    const pinnedRepositories = data.user?.pinnedItems.nodes ?? []
+    const repoProps = pinnedRepositories.map(repo => {
+        if (repo?.__typename !== 'Repository')
+            return null
+
+        return {
+            name: repo.name,
+            url: repo.url,
+            description: repo.description,
+            owner: {
+                name: repo.owner.login,
+                url: repo.owner.url
+            },
+            languages: repo.languages?.nodes?.map(lang => {
+                if (lang === null)
+                    return null
+
+                return {
+                    name: lang.name,
+                    color: lang.color ?? '#00000'
+                }
+            }).filter(lang => lang != null) ?? []
+        } as PinnedRepository
+    }).filter(res => res !== null) as PinnedRepository[]
+
+    return { props: { repoProps } }
 }
 
 export default Home
