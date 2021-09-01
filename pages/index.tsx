@@ -97,7 +97,8 @@ export async function getServerSideProps() {
         query: GetPinnedRepositoriesDocument,
         variables: {
             userLogin: "xploitedd"
-        }
+        },
+        fetchPolicy: 'no-cache'
     })
 
     const pinnedRepositories = data.user?.pinnedItems.nodes ?? []

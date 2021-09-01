@@ -21644,24 +21644,28 @@ export type GetPinnedRepositoriesQueryVariables = Exact<{
 }>;
 
 
-export type GetPinnedRepositoriesQuery = { __typename?: 'Query', user?: Maybe<{ __typename?: 'User', pinnedItems: { __typename?: 'PinnableItemConnection', nodes?: Maybe<Array<Maybe<{ __typename?: 'Gist' } | { __typename?: 'Repository', name: string, url: any, description?: Maybe<string>, owner: { __typename?: 'Organization', login: string, url: any } | { __typename?: 'User', login: string, url: any }, languages?: Maybe<{ __typename?: 'LanguageConnection', nodes?: Maybe<Array<Maybe<{ __typename?: 'Language', name: string, color?: Maybe<string> }>>> }> }>>> } }> };
+export type GetPinnedRepositoriesQuery = { __typename?: 'Query', user?: Maybe<{ __typename?: 'User', id: string, pinnedItems: { __typename?: 'PinnableItemConnection', nodes?: Maybe<Array<Maybe<{ __typename?: 'Gist' } | { __typename?: 'Repository', id: string, name: string, url: any, description?: Maybe<string>, owner: { __typename?: 'Organization', id: string, login: string, url: any } | { __typename?: 'User', id: string, login: string, url: any }, languages?: Maybe<{ __typename?: 'LanguageConnection', nodes?: Maybe<Array<Maybe<{ __typename?: 'Language', id: string, name: string, color?: Maybe<string> }>>> }> }>>> } }> };
 
 
 export const GetPinnedRepositoriesDocument = gql`
     query GetPinnedRepositories($userLogin: String!, $limit: Int = 3, $languagesLimit: Int = 2) {
   user(login: $userLogin) {
+    id
     pinnedItems(first: $limit) {
       nodes {
         ... on Repository {
+          id
           name
           url
           description
           owner {
+            id
             login
             url
           }
           languages(first: $languagesLimit) {
             nodes {
+              id
               name
               color
             }

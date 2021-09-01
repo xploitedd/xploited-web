@@ -1,17 +1,21 @@
 query GetPinnedRepositories($userLogin: String!, $limit: Int = 3, $languagesLimit: Int = 2) {
     user(login: $userLogin) {
+        id
         pinnedItems(first: $limit) {
             nodes {
                 ... on Repository {
+                    id
                     name
                     url
                     description
                     owner {
+                        id
                         login
                         url
                     }
                     languages(first: $languagesLimit) {
                         nodes {
+                            id
                             name
                             color
                         }
@@ -20,4 +24,4 @@ query GetPinnedRepositories($userLogin: String!, $limit: Int = 3, $languagesLimi
             }
         }
     }
-}   
+}
