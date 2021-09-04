@@ -1,28 +1,32 @@
 version: "3.9"
 services:
   web:
+    container_name: xploited-web
     build: .
     ports:
       - "3000:3000"
-    environment: 
+    environment:
       - "GITHUB_PAT=${GITHUB_PAT}"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.xploited-web.rule=Host(`xploited.xyz`) || Host(`www.xploited.xyz`)"
-      - "traefik.http.routers.xploited-web.entrypoints=web-secure"
+      - "traefik.http.routers.xploited-web.entrypoints=web,web-secure"
       - "traefik.http.routers.xploited-web.tls=true"
       - "traefik.http.routers.xploited-web.tls.certresolver=cert-resolver"
   proxy:
+    container_name: traefik-proxy
     image: traefik:latest
     command:
       - "--api.insecure=true"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
       - "--entrypoints.web-secure.address=:443"
-      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
-    depends_on: 
+      - "--certificatesresolvers.cert-resolver.acme.tlschallenge=true"
+    depends_on:
       - web
     ports:
+      - "80:80"
       - "443:443"
       - "8080:8080"
     volumes:
