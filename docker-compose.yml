@@ -6,3 +6,24 @@ services:
       - "3000:3000"
     environment: 
       - "GITHUB_PAT=${GITHUB_PAT}"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.xploited-web.rule=Host(`xploited.xyz`) || Host(`www.xploited.xyz`)"
+      - "traefik.http.routers.xploited-web.entrypoints=web-secure"
+      - "traefik.http.routers.xploited-web.tls=true"
+      - "traefik.http.routers.xploited-web.tls.certresolver=cert-resolver"
+  proxy:
+    image: traefik:latest
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web-secure.address=:443"
+      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+    depends_on: 
+      - web
+    ports:
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
