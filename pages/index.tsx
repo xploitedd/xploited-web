@@ -47,7 +47,7 @@ const Home: NextPage<HomeProps> = props => {
                                 <h1 className="text-6xl md:text-8xl font-bold text-gray-100">Ricardo <br /> Margalhau</h1>
                                 <div className="mx-10 xl:mx-0">
                                     <h3 className="text-xl text-gray-400">BSc. Computer Science and Engineering @ ISEL, Lisbon</h3>
-                                    {/* <h3 className="text-xl text-gray-100">MSc. Computer Science and Engineering @ IST, Lisbon</h3> */}
+                                    <h3 className="text-xl text-gray-100">MSc. Computer Science @ NOVA SST, Monte da Caparica</h3>
                                 </div>
                                 <h3 className="text-xl text-gray-100">me [at] xploited [dot] xyz</h3>
                             </div>
