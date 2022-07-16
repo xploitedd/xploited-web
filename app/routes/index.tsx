@@ -7,8 +7,8 @@ export default function Index() {
         <div className="h-screen text-white p-10">
             <div className="flex flex-col lg:justify-center items-center h-full">
                 <Header />
-                <div className="grow-0 h-0 mt-20">
-                    <div className="flex flex-col items-center space-y-10">
+                <div className="grow-0 h-0">
+                    <div className="flex flex-col items-center space-y-10 mt-20">
                         <ActivitySection className="flex-initial" />
                         <SocialMediaSection className="flex-initial" />
                     </div>

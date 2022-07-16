@@ -580,6 +580,10 @@ video {
   margin-top: 0.75rem;
 }
 
+.mt-96 {
+  margin-top: 24rem;
+}
+
 .inline {
   display: inline;
 }
@@ -688,6 +692,14 @@ video {
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+}
+
+.pt-20 {
+  padding-top: 5rem;
+}
+
+.pt-96 {
+  padding-top: 24rem;
 }
 
 .text-center {
