@@ -1,9 +1,92 @@
+import { PropsWithChildren, PropsWithoutRef } from "react";
+import { TiSocialLinkedin, TiSocialGithub, TiMail } from "react-icons/ti"
+import LinkButton from "~/components/LinkButton";
+
 export default function Index() {
     return (
-        <div className="h-screen">
-            <div className="flex flex-col justify-center items-center h-full text-white">
-                <h1 className="flex-initial text-6xl font-black">Ricardo Margalhau</h1>
-                <h2 className="flex-initial text-3xl">Come back again soon</h2>
+        <div className="h-screen text-white">
+            <div className="flex flex-col justify-center items-center h-full">
+                <Header />
+                <div className="grow-0 h-0 mt-20">
+                    <div className="flex flex-col items-center space-y-10">
+                        <ActivitySection className="flex-initial" />
+                        <SocialMediaSection className="flex-initial" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function Header() {
+    return (
+        <div className="flex flex-col items-center">
+            <img
+                className="flex-initial w-48 rounded-full shadow-2xl shadow-gray-700"
+                src="/images/photo.jpeg"
+            />
+
+            <h1 className="flex-initial text-6xl font-black mt-10">Ricardo Margalhau</h1>
+            <h2 className="flex-initial text-3xl">Software Engineer</h2>
+        </div>
+    )
+}
+
+function ActivitySection(
+    props: PropsWithoutRef<{
+        className?: string
+    }>
+) {
+    return (
+        <div className={`flex flex-col justify-center space-y-5 ${props.className}`}>
+            <ActivityData title="Present">
+                <p>Software Engineer Intern @ <a className="underline" target="blank noreferrer" href="https://cloudflare.com">Cloudflare</a></p>
+                <p>MSc. in Computer Science @ <a className="underline" target="blank noreferrer" href="https://fct.unl.pt">NOVA - School of Science and Technology</a></p>
+                {/* <a className="underline mt-3" href="/files/RicardoMargalhau_CV.pdf">Download Curriculum Vitae</a> */}
+            </ActivityData>
+        </div>
+    )
+}
+
+function ActivityData(
+    props: PropsWithChildren<{
+        title: string,
+        className?: string
+    }>
+) {
+    return (
+        <div className={`flex space-x-5 ${props.className}`}>
+            <h1 className="font-bold">{props.title}</h1>
+            <div>
+                <div className="flex flex-col">
+                    {props.children}
+                </div>
+            </div>
+        </div>
+    )
+}
+
+function SocialMediaSection(
+    props: PropsWithoutRef<{
+        className?: string
+    }>
+) {
+    return (
+        <div className={`flex justify-center space-x-3 ${props.className}`}>
+            <div className="flex-initial">
+                <LinkButton href="https://linkedin.com/in/rmargalhau">
+                    <TiSocialLinkedin className="inline" /> linkedin.com/in/rmargalhau
+                </LinkButton>
+            </div>
+            <div className="flex-initial">
+                <LinkButton href="https://github.com/xploitedd">
+                    <TiSocialGithub className="inline" /> github.com/xploitedd
+                </LinkButton>
+            </div>
+            <div className="flex-initial">
+                <LinkButton href="mailto:ricardo@xploited.xyz">
+                    <TiMail className="inline" /> ricardo [at] xploited [dot] xyz
+                </LinkButton>
             </div>
         </div>
     );

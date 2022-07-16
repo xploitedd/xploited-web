@@ -17,6 +17,7 @@ specifiers:
   postcss: ^8.4.14
   react: ^17.0.2
   react-dom: ^17.0.2
+  react-icons: ^4.4.0
   tailwindcss: ^3.1.6
   typescript: ^4.7.4
   wrangler: beta
@@ -28,6 +29,7 @@ dependencies:
   cross-env: 7.0.3
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
+  react-icons: 4.4.0_react@17.0.2
 
 devDependencies:
   '@cloudflare/workers-types': 3.14.1
@@ -42,7 +44,7 @@ devDependencies:
   postcss: 8.4.14
   tailwindcss: 3.1.6
   typescript: 4.7.4
-  wrangler: 0.0.0-fc55964
+  wrangler: 0.0.0-0953af8
 
 packages:
 
@@ -6544,6 +6546,14 @@ packages:
       react: 17.0.2
       scheduler: 0.20.2
 
+  /react-icons/4.4.0_react@17.0.2:
+    resolution: {integrity: sha512-fSbvHeVYo/B5/L4VhB7sBA1i2tS8MkT0Hb9t2H1AVPkwGfVHLJCqyr2Py9dKMxsyM63Eng1GkdZfbWj+Fmv8Rg==}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      react: 17.0.2
+    dev: false
+
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: true
@@ -7803,8 +7813,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /wrangler/0.0.0-fc55964:
-    resolution: {integrity: sha512-Q65lDKYwwfRrnaLI8BUwmtm3YzHagvu5uXLZ1y+rQrXUAbZGMV/4pc2+Q+H7wtdct0QjdZhxgVUQBDTbq8+P+g==}
+  /wrangler/0.0.0-0953af8:
+    resolution: {integrity: sha512-DXhOUdG375zjfLYIjPRi76x/msr0hdWK/1Bjuv1qEnzIGI35AGVhvBHjEuYSCE8ff4E/qAW+RiTRE1nu92f5yw==}
     engines: {node: '>=16.7.0'}
     hasBin: true
     dependencies:
