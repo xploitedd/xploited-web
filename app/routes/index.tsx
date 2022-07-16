@@ -4,8 +4,8 @@ import LinkButton from "~/components/LinkButton";
 
 export default function Index() {
     return (
-        <div className="h-screen text-white">
-            <div className="flex flex-col justify-center items-center h-full">
+        <div className="h-screen text-white p-10">
+            <div className="flex flex-col lg:justify-center items-center h-full">
                 <Header />
                 <div className="grow-0 h-0 mt-20">
                     <div className="flex flex-col items-center space-y-10">
@@ -20,7 +20,7 @@ export default function Index() {
 
 function Header() {
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center text-center lg:text-left">
             <img
                 className="flex-initial w-48 rounded-full shadow-2xl shadow-gray-700"
                 src="/images/photo.jpeg"
@@ -40,8 +40,8 @@ function ActivitySection(
     return (
         <div className={`flex flex-col justify-center space-y-5 ${props.className}`}>
             <ActivityData title="Present">
-                <p>Software Engineer Intern @ <a className="underline" target="blank noreferrer" href="https://cloudflare.com">Cloudflare</a></p>
-                <p>MSc. in Computer Science @ <a className="underline" target="blank noreferrer" href="https://fct.unl.pt">NOVA - School of Science and Technology</a></p>
+                <li>Software Engineer Intern @ <a className="underline" target="blank noreferrer" href="https://cloudflare.com">Cloudflare</a></li>
+                <li>MSc. in Computer Science @ <a className="underline" target="blank noreferrer" href="https://fct.unl.pt">NOVA - School of Science and Technology</a></li>
                 {/* <a className="underline mt-3" href="/files/RicardoMargalhau_CV.pdf">Download Curriculum Vitae</a> */}
             </ActivityData>
         </div>
@@ -55,12 +55,12 @@ function ActivityData(
     }>
 ) {
     return (
-        <div className={`flex space-x-5 ${props.className}`}>
+        <div className={`flex flex-col lg:flex-row space-y-3 lg:space-x-5 lg:space-y-0 ${props.className}`}>
             <h1 className="font-bold">{props.title}</h1>
             <div>
-                <div className="flex flex-col">
+                <ul className="list-disc lg:list-none">
                     {props.children}
-                </div>
+                </ul>
             </div>
         </div>
     )
@@ -72,7 +72,7 @@ function SocialMediaSection(
     }>
 ) {
     return (
-        <div className={`flex justify-center space-x-3 ${props.className}`}>
+        <div className={`flex flex-col lg:flex-row justify-center space-y-3 lg:space-x-3 lg:space-y-0 ${props.className}`}>
             <div className="flex-initial">
                 <LinkButton href="https://linkedin.com/in/rmargalhau">
                     <TiSocialLinkedin className="inline" /> linkedin.com/in/rmargalhau
