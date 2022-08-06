@@ -1,4 +1,4 @@
-import { PropsWithChildren, PropsWithoutRef } from "react";
+import type { PropsWithChildren, PropsWithoutRef } from "react";
 import { TiSocialLinkedin, TiSocialGithub, TiMail } from "react-icons/ti"
 import LinkButton from "~/components/LinkButton";
 
@@ -22,7 +22,8 @@ function Header() {
     return (
         <div className="flex flex-col items-center text-center lg:text-left">
             <img
-                className="flex-initial w-48 rounded-full shadow-2xl shadow-gray-700"
+                alt="profile pic"
+                className="flex-initial w-48 h-48 rounded-full shadow-2xl shadow-red-700 object-cover"
                 src="/images/photo.jpeg"
             />
 
