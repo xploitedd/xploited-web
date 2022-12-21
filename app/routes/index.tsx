@@ -41,7 +41,7 @@ function ActivitySection(
     return (
         <div className={`flex flex-col justify-center space-y-5 ${props.className}`}>
             <ActivityData title="Present">
-                <li>Software Engineer Intern @ <a className="underline" target="blank noreferrer" href="https://cloudflare.com">Cloudflare</a></li>
+                <li>Systems Engineer @ <a className="underline" target="blank noreferrer" href="https://cloudflare.com">Cloudflare</a></li>
                 <li>MSc. in Computer Science @ <a className="underline" target="blank noreferrer" href="https://fct.unl.pt">NOVA - School of Science and Technology</a></li>
                 {/* <a className="underline mt-3" href="/files/RicardoMargalhau_CV.pdf">Download Curriculum Vitae</a> */}
             </ActivityData>
